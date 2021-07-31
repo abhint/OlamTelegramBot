@@ -1,6 +1,6 @@
 from logging import root
 from os import name
-from pyrogram import Client
+from pyrogram import *
 from sample_cofig import (
     API_ID,
     API_HASH,
