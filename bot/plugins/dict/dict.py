@@ -2,7 +2,7 @@ from bot.olambot import OlamBot, filters
 from bot.helpers.malayalam_dict import malayalamDictBot
 
 
-@OlamBot.on_message(filters.private)
+@OlamBot.on_message()
 async def malayalamDict(client, msg):
     word = malayalamDictBot(msg.text)
     w = f"\n".join(word)
