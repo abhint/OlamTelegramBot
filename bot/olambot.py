@@ -1,11 +1,14 @@
 from logging import root
-from os import name
+import os
 from pyrogram import *
 from sample_cofig import (
     API_ID,
     API_HASH,
     BOT_TOKEN
 )
+from bot import __version__
+from bot import __copyright__
+from bot import __license__
 
 
 class OlamBot(Client):
@@ -24,7 +27,14 @@ class OlamBot(Client):
 
     async def start(self):
         await super().start()
-        print(f"BOT IS ONLINE !")
+        print(
+            f"\n\nOlam {__version__}, {__copyright__}\nLicensed under the terms of the {__license__}\n\n")
+        try:
+            open("data/parts-of-speech.json")
+            open("data/olam-enml.csv")
+        except (FileExistsError, FileNotFoundError) as e:
+            print(f"File is not found\n{e}")
+            exit()
 
     async def stop(self, *arg):
         await super().stop()
