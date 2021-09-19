@@ -18,7 +18,8 @@ class OlamBot(Client):
             bot_token=BOT_TOKEN,
             plugins={
                 "root": "bot/plugins"
-            }
+            },
+            parse_mode="html"
         )
 
     async def start(self):
