@@ -6,7 +6,7 @@ from sample_cofig import (
     API_HASH,
     BOT_TOKEN
 )
-
+from bot import __version__ , __copyright__ , __license__
 
 class OlamBot(Client):
     def __init__(self):
@@ -24,7 +24,7 @@ class OlamBot(Client):
 
     async def start(self):
         await super().start()
-        print(f"BOT IS ONLINE !")
+        print(f"\n\nOlam {__version__}, {__copyright__}\nLicensed under the terms of the {__license__}\n\n")
 
     async def stop(self, *arg):
         await super().stop()
