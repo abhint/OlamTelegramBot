@@ -9,5 +9,4 @@ async def malayalamDict(client, msg):
     await client.send_message(
         chat_id=msg.chat.id,
         text=f"{msg.text.capitalize()}\n{w}",
-        parse_mode="html"
     )
