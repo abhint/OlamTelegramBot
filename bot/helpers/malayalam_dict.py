@@ -6,7 +6,10 @@ def malayalamDict(word):
     mDict = []
     mDef = []
     mPS = []
-    jf = open("data/parts-of-speech.json")
+    try:
+        jf = open("data/parts-of-speech.json")
+    except (FileExistsError , FileNotFoundError) as e:
+        print(e)
     mPSJ = json.load(jf)
     with open("data/olam-enml.csv", "r") as f:
         r = csv.reader(f)
