@@ -1,35 +1,26 @@
-import csv
+import sqlite3
 import json
+connt = sqlite3.connect('enml.db')
+cur = connt.cursor()
+parts_speech = open('data/parts-of-speech.json', 'r')
+load_ps = json.loads(parts_speech.read())
 
 
-def malayalamDict(word):
-    mDict = []
-    mDef = []
-    mPS = []
-    jf = open("data/parts-of-speech.json")
-    mPSJ = json.load(jf)
-    with open("data/olam-enml.csv", "r") as f:
-        r = csv.reader(f)
-        for i in r:
-            if word in i[0]:
-                mDict.append(i[0].split('\t'))
-        for j in range(0, len(mDict)):
-            mDef.append(str(mDict[j][-1]))
-        for p in range(0, len(mDict)):
-            mPS.append(mPSJ[mDict[p][-2]]['en'])
-
-    return mDef, mPS
-
-
-def malayalamDictBot(text):
-    word = f"{text.capitalize()}\t"
-    mdef, ps = malayalamDict(word)
-    rmw = []
-    if mdef:
-        for l in range(0, len(mdef)):
-            rmw.append(f"{str(mdef[l])} - {ps[l]}")
-        return rmw
-    else:
-        rmw = [
-            f'<b>ക്ഷമിക്കുകനിങ്ങള്‍ അന്വേഷിച്ച "{text}" എന്ന പദത്തിന്റെ അര്ത്ഥം കണ്ടെത്താനായില്ല.</b>']
-        return rmw
+def doSerch(user_text):
+    word: str
+    word_id: str
+    result = []
+    ps_result = []
+    sql_serch_id = cur.execute(
+        f"SELECT word, _id FROM words_en WHERE stems LIKE '%{user_text}%' OR stems LIKE '{user_text}' ORDER BY LENGTH(word) LIMIT 1")
+    for row in sql_serch_id:
+        word, word_id = row
+    sql_serch_dict = cur.execute(
+        f'SELECT word, id_en,type FROM relations_en_ml LEFT JOIN words_ml ON (words_ml._id = relations_en_ml.id_ml) WHERE id_en IN ({word_id}) ORDER BY LENGTH(word)')
+    for row in sql_serch_dict:
+        word_dict, _, p_speech = row
+        if p_speech in load_ps:
+            ps_result.append(f"◦ {word_dict} - {load_ps[p_speech]['en']}")
+        else:
+            result.append(f"-{word_dict}")
+    return  word, ps_result, result
