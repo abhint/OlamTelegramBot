@@ -5,17 +5,17 @@
 
 ```sh
 //With GitHub CLI
-$ gh repo clone AbhijithNT/OlamTelegramBot
+$ gh repo clone abhint/OlamTelegramBot
 ```
 
 ```sh
 //With SSH
-$ git clone git@github.com:AbhijithNT/OlamTelegramBot.git
+$ git clone git@github.com:abhint/OlamTelegramBot.git
 ```
 
 ```sh
 //With HTTPS
-$ git clone https://github.com/AbhijithNT/OlamTelegramBot.git
+$ git clone https://github.com/abhint/OlamTelegramBot.git
 ```
 #### 2. change directory
 
@@ -48,7 +48,7 @@ python3 -m bot
 
 ### Deploy
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/AbhijithNT/OlamTelegramBot/)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/abhint/OlamTelegramBot/)
 
 ## Credits, and Thanks to
 
@@ -56,4 +56,4 @@ python3 -m bot
 * [Dan Tès](https://telegram.dog/haskell) for his[Pyrogram Library](https://github.com/pyrogram/pyrogram)
 
 ### LICENSE
-- [ GPL-3.0 License](https://github.com/AbhijithNT/OlamTelegramBot/blob/main/LICENSE)
+- [ GPL-3.0 License](https://github.com/abhint/OlamTelegramBot/blob/main/LICENSE)
