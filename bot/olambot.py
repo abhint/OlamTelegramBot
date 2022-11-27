@@ -20,7 +20,6 @@ class OlamBot(Client):
             plugins={
                 "root": "bot/plugins"
             },
-            parse_mode="html"
         )
 
     async def start(self):
