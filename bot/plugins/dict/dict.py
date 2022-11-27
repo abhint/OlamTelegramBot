@@ -5,12 +5,18 @@ from bot.helpers.malayalam_dict import searchWord
 
 @OlamBot.on_message()
 async def malayalam_dict(client: OlamBot, msg: Message):
-    word, ps_result, result = do_search(msg.text)
-    dict_result = "\n".join(ps_result)
-    w = (f'__{result}__\n'
-         f'{dict_result}')
+    try:
+        word, entries, definition = searchWord(msg.text)
+        print(entries)
+    except Exception as err:
+        print(err)
+        await msg.reply(f'നിങ്ങള്‍ അന്വേഷിച്ച "<b>{msg.text}</b>" എന്ന പദത്തിന്റെ അര്ത്ഥം കണ്ടെത്താനായില്ല. ')
+        return
+    entries_join = "\n".join(entries)
+    entries_msg = f'\n{entries_join}\n' if entries else "\n"
+    definition_join = "\n".join(definition)
+    message = f'{word}{entries_msg}{definition_join}'
     await client.send_message(
         chat_id=msg.chat.id,
-        text=f"{msg.text.capitalize()}{w}",
-        parse_mode='md'
+        text=message,
     )
