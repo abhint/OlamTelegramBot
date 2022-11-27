@@ -1,7 +1,7 @@
 import sqlite3
 import json
 
-connt = sqlite3.connect('enml.db')
+connt = sqlite3.connect('data/enmldata.db')
 cur = connt.cursor()
 parts_speech = open('data/parts-of-speech.json', 'r')
 load_ps = json.loads(parts_speech.read())
