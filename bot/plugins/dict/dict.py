@@ -1,6 +1,6 @@
 from bot.olambot import OlamBot
 from pyrogram.types import Message
-from bot.helpers.malayalam_dict import do_search
+from bot.helpers.malayalam_dict import searchWord
 
 
 @OlamBot.on_message()
